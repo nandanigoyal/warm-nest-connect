@@ -61,7 +61,23 @@ export default {
 					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
-				}
+				},
+				// InTune custom colors
+				'warm-cream': 'hsl(var(--warm-cream))',
+				'rich-brown': 'hsl(var(--rich-brown))',
+				'light-beige': 'hsl(var(--light-beige))',
+				'warm-accent': 'hsl(var(--warm-accent))',
+				'charcoal-text': 'hsl(var(--charcoal-text))'
+			},
+			backgroundImage: {
+				'gradient-warm': 'var(--gradient-warm)'
+			},
+			boxShadow: {
+				'soft': 'var(--shadow-soft)',
+				'card': 'var(--shadow-card)'
+			},
+			transitionProperty: {
+				'smooth': 'var(--transition-smooth)'
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
