@@ -27,16 +27,20 @@ const RoommateRevealDialog = ({ isOpen, onClose }: RoommateRevealDialogProps) =>
   };
 
   const handleDashboard = () => {
-    // This is where you would redirect to the dashboard
-    // For now, we'll just show a toast or alert
-    alert("Redirecting to dashboard...");
+    // PASTE YOUR DASHBOARD REDIRECT LINK HERE
+    // Example: window.location.href = "https://your-dashboard-url.com";
+    // Or: window.open("https://your-dashboard-url.com", "_blank");
+    
+    alert("Redirecting to dashboard... (Replace this alert with your dashboard link in RoommateRevealDialog.tsx line 32)");
     onClose();
   };
 
   const handleContinueChat = () => {
-    // This is where you would redirect to private chat
-    // For now, we'll just show a toast or alert
-    alert("Opening private chat...");
+    // PASTE YOUR PRIVATE CHAT REDIRECT LINK HERE  
+    // Example: window.location.href = "https://your-private-chat-url.com?user=MOON_1305";
+    // Or: window.open("https://your-private-chat-url.com?user=MOON_1305", "_blank");
+    
+    alert("Opening private chat... (Replace this alert with your private chat link in RoommateRevealDialog.tsx line 38)");
     onClose();
   };
 
@@ -105,6 +109,11 @@ const RoommateRevealDialog = ({ isOpen, onClose }: RoommateRevealDialogProps) =>
             <div className="space-y-3">
               <div className="flex items-center justify-center gap-2">
                 <User className="h-5 w-5 text-primary" />
+                <span className="font-medium">User ID: MOON_1305</span>
+              </div>
+              
+              <div className="flex items-center justify-center gap-2">
+                <User className="h-5 w-5 text-primary" />
                 <span className="font-medium">Name: Suhani Gupta</span>
               </div>
               
@@ -115,7 +124,7 @@ const RoommateRevealDialog = ({ isOpen, onClose }: RoommateRevealDialogProps) =>
               
               <div className="flex items-center justify-center gap-2">
                 <Heart className="h-5 w-5 text-red-500" />
-                <span>Preference Match: <strong className="text-green-600">88%</strong></span>
+                <span>Preference Match: <strong className="text-green-600">92%</strong></span>
               </div>
               
               <div className="flex items-center justify-center gap-2">
@@ -140,7 +149,7 @@ const RoommateRevealDialog = ({ isOpen, onClose }: RoommateRevealDialogProps) =>
             className="w-full" 
             size="lg"
           >
-            Continue Chatting with Suhani
+            Continue Chatting with MOON_1305
           </Button>
         </div>
       </DialogContent>

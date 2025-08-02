@@ -22,6 +22,60 @@ interface ChatEmbedProps {
 const ChatEmbed = ({ selectedUser }: ChatEmbedProps) => {
   const [isEmbedReady, setIsEmbedReady] = useState(false);
 
+  const getConversationForUser = (userId: string) => {
+    const conversations = {
+      "MOON_1305": [
+        { text: "Hi there! I saw we matched with 92% compatibility 🎉", isMe: false, time: "10:30 AM" },
+        { text: "Hey! That's amazing! What's your sleep schedule like?", isMe: true, time: "10:32 AM" },
+        { text: "I'm definitely a night owl 🦉 Usually sleep around 1-2 AM. You?", isMe: false, time: "10:35 AM" },
+        { text: "Perfect! Same here. Are you okay with having friends over occasionally?", isMe: true, time: "10:37 AM" },
+        { text: "Absolutely! I love hosting movie nights. How do you feel about cleanliness?", isMe: false, time: "10:40 AM" },
+        { text: "I'm pretty neat! Clean as you go type. Do you cook much?", isMe: true, time: "10:42 AM" },
+        { text: "Yes! I love cooking and sharing meals. We could meal prep together!", isMe: false, time: "10:45 AM" }
+      ],
+      "CLOUD_7097": [
+        { text: "Hello! Excited about our 85% match rate!", isMe: false, time: "2:15 PM" },
+        { text: "Hi! Yes, I'm looking forward to learning more about you.", isMe: true, time: "2:18 PM" },
+        { text: "What's your study routine like? I'm pretty focused during exam weeks.", isMe: false, time: "2:20 PM" },
+        { text: "I prefer quiet study time too. Do you listen to music while studying?", isMe: true, time: "2:22 PM" },
+        { text: "Sometimes lo-fi, but mostly silence. How about room temperature preferences?", isMe: false, time: "2:25 PM" },
+        { text: "I like it slightly cool, around 68-70°F. Is that okay with you?", isMe: true, time: "2:27 PM" },
+        { text: "Perfect! I'm the same way. Do you have any pets or planning to get any?", isMe: false, time: "2:30 PM" }
+      ],
+      "SUN_5672": [
+        { text: "Hey roomie! 78% compatibility sounds promising!", isMe: false, time: "11:45 AM" },
+        { text: "Hello! I'd love to know about your daily routine.", isMe: true, time: "11:48 AM" },
+        { text: "I'm an early bird! Up by 6 AM for morning jogs. Hope that's not too loud?", isMe: false, time: "11:50 AM" },
+        { text: "Not at all! I wake up early too. Do you have any dietary restrictions?", isMe: true, time: "11:52 AM" },
+        { text: "I'm vegetarian and try to eat healthy. You?", isMe: false, time: "11:55 AM" },
+        { text: "I'm flexible with diet! How do you feel about sharing kitchen space?", isMe: true, time: "11:57 AM" },
+        { text: "Great! I usually meal prep on Sundays. We can coordinate cooking times.", isMe: false, time: "12:00 PM" }
+      ],
+      "STAR_4357": [
+        { text: "Hi! Our 88% match looks really good!", isMe: false, time: "4:20 PM" },
+        { text: "Hello! Tell me about your lifestyle preferences.", isMe: true, time: "4:23 PM" },
+        { text: "I'm pretty social but respect quiet time. Love weekend game nights!", isMe: false, time: "4:25 PM" },
+        { text: "That sounds fun! How often do you have people over?", isMe: true, time: "4:27 PM" },
+        { text: "Maybe once or twice a week, usually Friday/Saturday. Always give heads up!", isMe: false, time: "4:30 PM" },
+        { text: "That works for me! What about cleaning and chores?", isMe: true, time: "4:32 PM" },
+        { text: "I'm all for a cleaning schedule! Fair division of tasks works best.", isMe: false, time: "4:35 PM" }
+      ],
+      "CLOUD_8433": [
+        { text: "Hey there! 83% compatibility - let's chat!", isMe: false, time: "7:10 PM" },
+        { text: "Hi! What are you studying?", isMe: true, time: "7:13 PM" },
+        { text: "Computer Science! You? I sometimes code late but I use headphones.", isMe: false, time: "7:15 PM" },
+        { text: "Business major here! No worries about late coding. Do you smoke?", isMe: true, time: "7:17 PM" },
+        { text: "Nope, completely smoke-free. How about alcohol? I occasionally have wine.", isMe: false, time: "7:20 PM" },
+        { text: "That's totally fine! I'm not a big drinker but no issues with it.", isMe: true, time: "7:22 PM" },
+        { text: "Perfect! Want to discuss budget and bills splitting?", isMe: false, time: "7:25 PM" }
+      ]
+    };
+    
+    return conversations[userId as keyof typeof conversations] || [
+      { text: "Hey! Looking forward to getting to know you better!", isMe: false, time: "12:00 PM" }
+    ];
+  };
+
   // This is where you'll embed your external chat application
   // For now, we're showing a placeholder with instructions
 
@@ -121,15 +175,25 @@ const ChatEmbed = ({ selectedUser }: ChatEmbedProps) => {
               </div>
               
               <div className="flex-1 space-y-3 overflow-y-auto">
-                <div className="bg-white p-3 rounded-lg max-w-xs shadow-sm">
-                  <p className="text-sm">Hi there! I saw we matched with {selectedUser.matchPercentage}% compatibility 🎉</p>
-                  <span className="text-xs text-muted-foreground">10:30 AM</span>
-                </div>
-                
-                <div className="bg-primary text-primary-foreground p-3 rounded-lg max-w-xs ml-auto shadow-sm">
-                  <p className="text-sm">Hey! Yes, that's amazing! I'd love to learn more about your living preferences.</p>
-                  <span className="text-xs text-primary-foreground/80">10:32 AM</span>
-                </div>
+                {getConversationForUser(selectedUser.id).map((message, index) => (
+                  <div 
+                    key={index}
+                    className={`p-3 rounded-lg max-w-xs shadow-sm ${
+                      message.isMe 
+                        ? 'bg-primary text-primary-foreground ml-auto' 
+                        : 'bg-white'
+                    }`}
+                  >
+                    <p className="text-sm">{message.text}</p>
+                    <span className={`text-xs ${
+                      message.isMe 
+                        ? 'text-primary-foreground/80' 
+                        : 'text-muted-foreground'
+                    }`}>
+                      {message.time}
+                    </span>
+                  </div>
+                ))}
               </div>
 
               <div className="mt-4 p-3 bg-muted rounded-lg text-center">
